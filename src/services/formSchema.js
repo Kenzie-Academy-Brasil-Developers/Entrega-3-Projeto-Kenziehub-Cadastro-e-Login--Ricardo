@@ -27,3 +27,10 @@ export const formRegisterSchema = z.object({
       contact: z.string().regex(/(?=.*?[0-9])/, "digite 11 número"),
       course_module: z.string().min(1, "Selecione um módulo")
 })
+
+export const formRegisterTechnologySchema = z.object({
+  title: z.string()
+    .min(1, "O e-mail é obrigatório"),
+    status: z.string()
+    .min(1, "O e-mail é obrigatório")
+})

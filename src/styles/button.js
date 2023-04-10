@@ -38,6 +38,13 @@ export const StyledButton = styled.button`
           font-size: 12px;
           line-height: 28px;
         `;
+        case "mobileSmall":
+          return css`
+            width: 5.549rem;
+            height: 3.2rem;
+            font-size: 1.2rem;
+            line-height: 2.8rem;
+          `;
     }
   }}
 
@@ -97,6 +104,7 @@ export const StyledButton = styled.button`
             font-size: 1.2rem;
             line-height: 2.842rem;
           `;
+          
       }
     }}
   }

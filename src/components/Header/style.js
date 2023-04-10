@@ -1,17 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const StyleHeader = styled.header`
-${({ page }) => {
-  if(page == "register"){
-    return css`
-    justify-content: space-between;
-    `
-  }else{
-    return css`
-    justify-content: center;
-    `
-  }
-}}
+
 width: 296px;
 display: flex;
 align-items: center;
@@ -27,11 +17,25 @@ align-items: center;
   .show{
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
   }
   .hidden{
     display: none;
     
   }
+  ${({ page }) => {
+  if(page != "login"){
+    return css`
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1rem;
+    `
+  }else{
+    return css`
+    justify-content: center;
+    `
+  }
+}}
   @media (min-width: 768px) {
     width: 369px;
     .title img{

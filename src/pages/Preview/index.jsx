@@ -6,7 +6,7 @@ export const Preview = () => {
     
   return (
     <StylePreview>
-      <h1>Preview</h1>
+      <titleStyles fontSize="one" >Preview</titleStyles>
     </StylePreview>
   );
 };

@@ -12,6 +12,10 @@ export const Header = ({page}) => {
         <Link className={page == "register" ? "show" : "hidden"} to={"/login"}>
         <StyledButton buttonSize="mobileMd" buttonStyle="small">Voltar</StyledButton>
         </Link>
+
+        <Link className={page == "dashboard" ? "show" : "hidden"} to={"/login"}>
+        <StyledButton onClick={() => localStorage.clear()} buttonSize="mobileSmall" buttonStyle="small">Sair</StyledButton>
+        </Link>
       </StyleHeader>
     </>
   );

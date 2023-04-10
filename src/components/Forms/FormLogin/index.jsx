@@ -7,10 +7,11 @@ import { StyledButton } from "../../../styles/button";
 import { Input } from "../../Input";
 import { formLoginSchema } from "../../../services/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 
 export const FormLogin = () => {
+  
   const [isTypePassword, setIsTypePassword] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(formLoginSchema),
@@ -20,12 +21,16 @@ export const FormLogin = () => {
   const handleLogin = async (data) => {
     try {
       const loginOk = await api.post("/sessions", data);
+      localStorage.setItem("@TOKEN", loginOk.data.token)
+      localStorage.setItem("@USERID", loginOk.data.user.id)
 
-      navigate("/dashboard");
-    } catch (error) {
-      toast(error);
-    }
-  };
+navigate("/dashboard");
+} catch (error) {
+  toast.error(error);
+}
+};
+
+
 
   return (
     <StyleFormContainer>

@@ -1,9 +1,56 @@
+import { Header } from "../../components/Header";
+import { api } from "../../services/api";
+import {
+  StyledTitleOne,
+  StyledTitleThree,
+  StyledTitleTwo,
+  Styledspan,
+} from "../../styles/typography";
 import { StyleDashboard } from "./style";
 
-export const Dashboard = () => {
+import { CardListTechnology } from "../../components/Forms/CardListTechnology";
+import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+export const Dashboard = ({ toast }) => {
+  
+  const localStorageIdUserLogado = localStorage.getItem("@USERID");
+  const [userName, setUserName] = useState("");
+  const [userModule, setUserModule] = useState("");
+  const [techsList, setTechsList] = useState([]);
+
+  
+
+  const idTest = "9c9fc6bc-fee6-48c3-b230-642563f20e15";
+  const loadUser = async (userId) => {
+    try {
+      const response = await api.get(`/users/${userId}`);
+      setUserName(response.data.name);
+      setUserModule(response.data.course_module);
+      setTechsList(response.data.techs);
+      return response;
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+  useEffect(() => {
+    // loadUser(localStorageIdUserLogado);
+    loadUser(idTest);
+  }, []);
   return (
     <StyleDashboard>
-      <h1>Dashboard</h1>
+      <div className="containerMain">
+        <Header page={"dashboard"} />
+        <div className="divBord">
+          <div className="divBordIn">
+            <div className="containerTitle">
+              <StyledTitleTwo fontSize="one">Olá, {userName}</StyledTitleTwo>
+              <Styledspan>{userModule}</Styledspan>
+            </div>
+              <Outlet />
+          </div>
+        </div>
+        <CardListTechnology techsList={techsList} />
+      </div>
     </StyleDashboard>
   );
 };

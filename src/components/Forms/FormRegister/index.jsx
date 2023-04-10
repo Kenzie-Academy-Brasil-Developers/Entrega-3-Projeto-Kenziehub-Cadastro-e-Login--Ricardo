@@ -6,12 +6,11 @@ import { StyledButton } from "../../../styles/button";
 import { Input } from "../../Input";
 import { StyleFormContainer } from "../FormLogin/style";
 import { StyleFormRegister } from "./style";
-import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formRegisterSchema } from "../../../services/formSchema";
 
-export const FormRegister = () => {
+export const FormRegister = ({toast}) => {
   const [isTypePassword, setIsTypePassword] = useState(true);
   const {
     register,
@@ -25,7 +24,7 @@ export const FormRegister = () => {
   const handleRegister = async (data) => {
     console.log(data);
     try {
-      await api.post("/users", data);
+      const userOk = await api.post("/users", data);
       toast.success("conta criada com sucesso");
       setTimeout(() => {
         navigate("/login");
@@ -37,7 +36,6 @@ export const FormRegister = () => {
 
   return (
     <StyleFormContainer>
-      <ToastContainer position="bottom-left" />
       <StyledTitleThree fonteSize="three">Crie sua conta</StyledTitleThree>
       <span>Rapido e grátis, vamos nessa</span>
       <StyleFormRegister onSubmit={handleSubmit(handleRegister)}>
