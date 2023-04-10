@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import { StyledParagraph, StyledTitleThree } from "../../../styles/typography";
-import { useNavigate, Link } from "react-router-dom";
+import {  StyledTitleThree } from "../../../styles/typography";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../../services/api";
 import { StyledButton } from "../../../styles/button";
 import { Input } from "../../Input";
@@ -9,8 +9,8 @@ import { StyleFormRegister } from "./style";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formRegisterSchema } from "../../../services/formSchema";
-
-export const FormRegister = ({toast}) => {
+import { toast } from "react-toastify";
+export const FormRegister = ({}) => {
   const [isTypePassword, setIsTypePassword] = useState(true);
   const {
     register,
@@ -76,8 +76,8 @@ export const FormRegister = ({toast}) => {
             id="password"
             label="Confirmar Senha"
             placeholder="Digite aqui sua senha"
-            error={errors.password?.message}
-            {...register("password")}
+            error={errors.confirm?.message}
+            {...register("confirm")}
           />
 
           <Input

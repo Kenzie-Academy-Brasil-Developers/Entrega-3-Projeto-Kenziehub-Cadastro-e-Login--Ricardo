@@ -6,7 +6,6 @@ export const StyleDashboard = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   .containerMain {
     display: flex;
     flex-direction: column;
@@ -39,7 +38,7 @@ export const StyleDashboard = styled.main`
     justify-content: center;
     width: 100%;
     height: 131px;
-
+padding: 0 0.3rem;
   }
   h1, h2 {
     color: var(--color-gray-0);
@@ -53,4 +52,14 @@ export const StyleDashboard = styled.main`
   header {
     padding: 1rem;
   }
-`;
+@media(min-width: 768px){
+  .containerMain {
+    width: 369px;
+  }
+  .divBordIn{
+    width: 369px;
+  }
+}
+`
+
+

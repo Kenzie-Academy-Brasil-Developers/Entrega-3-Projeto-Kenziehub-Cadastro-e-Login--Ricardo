@@ -11,16 +11,16 @@ import { StyleDashboard } from "./style";
 import { CardListTechnology } from "../../components/Forms/CardListTechnology";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-export const Dashboard = ({ toast }) => {
+import { toast } from "react-toastify";
+
+export const Dashboard = ({ isShowModal, setIsShowModal }) => {
   
   const localStorageIdUserLogado = localStorage.getItem("@USERID");
   const [userName, setUserName] = useState("");
   const [userModule, setUserModule] = useState("");
   const [techsList, setTechsList] = useState([]);
-
   
-
-  const idTest = "9c9fc6bc-fee6-48c3-b230-642563f20e15";
+  
   const loadUser = async (userId) => {
     try {
       const response = await api.get(`/users/${userId}`);
@@ -33,9 +33,8 @@ export const Dashboard = ({ toast }) => {
     }
   };
   useEffect(() => {
-    // loadUser(localStorageIdUserLogado);
-    loadUser(idTest);
-  }, []);
+    loadUser(localStorageIdUserLogado);
+  }, [techsList]);
   return (
     <StyleDashboard>
       <div className="containerMain">
@@ -49,7 +48,7 @@ export const Dashboard = ({ toast }) => {
               <Outlet />
           </div>
         </div>
-        <CardListTechnology techsList={techsList} />
+        <CardListTechnology techsList={techsList} localStorageIdUserLogado={localStorageIdUserLogado} isShowModal={isShowModal} setIsShowModal={setIsShowModal}/>
       </div>
     </StyleDashboard>
   );

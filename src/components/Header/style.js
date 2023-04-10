@@ -5,7 +5,8 @@ export const StyleHeader = styled.header`
 width: 296px;
 display: flex;
 align-items: center;
- margin: 2rem 0;
+justify-content: center;
+ margin: 4rem 0 2rem;
   .title img{
     width: 101px;
     height: 14px;
@@ -27,8 +28,7 @@ align-items: center;
   if(page != "login"){
     return css`
     justify-content: space-between;
-    width: 100%;
-    padding: 0 1rem;
+    width: 296px;
     `
   }else{
     return css`

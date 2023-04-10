@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 
-export const FormLogin = () => {
+export const FormLogin = ( {setUser}) => {
   
   const [isTypePassword, setIsTypePassword] = useState(true);
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -23,7 +23,7 @@ export const FormLogin = () => {
       const loginOk = await api.post("/sessions", data);
       localStorage.setItem("@TOKEN", loginOk.data.token)
       localStorage.setItem("@USERID", loginOk.data.user.id)
-
+      setUser()
 navigate("/dashboard");
 } catch (error) {
   toast.error(error);
