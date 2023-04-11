@@ -55,9 +55,11 @@ padding: 0 0.3rem;
 @media(min-width: 768px){
   .containerMain {
     width: 369px;
+    max-width: 780px;
   }
   .divBordIn{
     width: 369px;
+    max-width: 780px;
   }
 }
 `

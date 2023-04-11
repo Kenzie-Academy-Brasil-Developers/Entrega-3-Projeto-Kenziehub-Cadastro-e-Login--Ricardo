@@ -38,7 +38,7 @@ export const StyleFormContainer = styled.div`
     display: flex;
     justify-content: center;
   }
-  .buttonEntrar {
+  .buttonEnter {
     margin-top: 1rem;
   }
   span {

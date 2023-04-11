@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { GlobalStyles } from './styles/GlobalStyles'
 import { Login } from './pages/Login'
-import './styles/App.css'
 import { RoutesMain } from './routes'
 
 export const App = () => {

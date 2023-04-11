@@ -5,32 +5,39 @@ import { api } from "../../../services/api";
 import { StyleFormContainer, StyleFormLogin } from "./style";
 import { StyledButton } from "../../../styles/button";
 import { Input } from "../../Input";
-import { formLoginSchema } from "../../../services/formSchema";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useEffect, useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
 
-export const FormLogin = ( {setUser}) => {
-  
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { formLoginSchema } from "./formLoginSchema";
+
+export const FormLogin = ({ setUser }) => {
+  const [loading, setLoading] = useState(false);
   const [isTypePassword, setIsTypePassword] = useState(true);
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(formLoginSchema),
- });
+  });
   const navigate = useNavigate();
 
   const handleLogin = async (data) => {
     try {
+      setLoading(true);
       const loginOk = await api.post("/sessions", data);
-      localStorage.setItem("@TOKEN", loginOk.data.token)
-      localStorage.setItem("@USERID", loginOk.data.user.id)
-      setUser()
-navigate("/dashboard");
-} catch (error) {
-  toast.error(error);
-}
-};
+      localStorage.setItem("@TOKEN", loginOk.data.token);
+      localStorage.setItem("@USERID", loginOk.data.user.id);
+      setUser(loginOk.data.user);
 
-
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error("Ops! tem algo errado!");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <StyleFormContainer>
@@ -45,11 +52,10 @@ navigate("/dashboard");
             error={errors.email?.message}
             {...register("email")}
           />
-          
-          
-          <Input 
-          isTypePassword={isTypePassword}
-          setIsTypePassword={setIsTypePassword}
+
+          <Input
+            isTypePassword={isTypePassword}
+            setIsTypePassword={setIsTypePassword}
             type={isTypePassword ? "password" : "text"}
             id="password"
             label="Senha"
@@ -57,14 +63,17 @@ navigate("/dashboard");
             error={errors.password?.message}
             {...register("password")}
           />
-
-          
         </fieldset>
-        
-          <StyledButton className="buttonEntrar" type="submit" buttonSize="mobile" buttonStyle="primary">
-            Entrar
-          </StyledButton>
-        
+
+        <StyledButton
+          className="buttonEnter"
+          type="submit"
+          disabled={loading}
+          buttonSize="mobile"
+          buttonStyle="primary"
+        >
+          {loading ? "Entrando..." : "Entrar"}
+        </StyledButton>
       </StyleFormLogin>
       <StyledParagraph className="p">
         ainda não possui uma conta

@@ -13,7 +13,10 @@ export const GlobalReset = createGlobalStyle`
     outline:0;
     box-sizing: border-box;
   }
-
+  .App{
+    width: 100%;
+    height: 100%;
+}
   body,html, #root{
     width: 100vw;
     height: 100vh;

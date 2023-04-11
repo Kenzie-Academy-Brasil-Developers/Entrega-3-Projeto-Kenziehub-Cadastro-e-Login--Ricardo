@@ -36,7 +36,7 @@ border-radius: 3.20867px;
     border: none;
     padding: 1rem;
   }
-  .buttonRegisterTechnologia {
+  .buttonRegisterTechnology {
     margin: 1rem;
   }
   .statusFormRegister {

@@ -7,11 +7,15 @@ import {
 import imgadd from "../../../assets/Button-small-Default.svg";
 import { Link } from "react-router-dom";
 
-export const CardListTechnology = ({ techsList, localStorageIdUserLogado, isShowModal, setIsShowModal }) => {
+export const CardListTechnology = ({
+  techsList,
+  isShowModal,
+  setIsShowModal,
+}) => {
   return (
     <StyleCardListTechnologyContainer className="containerListTechnology">
       <div className="containerImg">
-        <Link to={localStorageIdUserLogado}>
+        <Link to={"modalregister"}>
           <button onClick={() => setIsShowModal(!isShowModal)}>
             <img src={imgadd} alt="icon" />
           </button>

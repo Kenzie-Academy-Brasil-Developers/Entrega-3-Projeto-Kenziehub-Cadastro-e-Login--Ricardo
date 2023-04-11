@@ -38,7 +38,7 @@ position: relative;
     width: 100%;
     margin: -1rem 0rem 2rem;
   }
-  .iconOlho{
+  .iconEye{
     position: absolute;
     /* display: flex;
     justify-content: center;
@@ -57,7 +57,7 @@ position: relative;
     p{
         top: 8rem
     }
-    .iconOlho{
+    .iconEye{
         top: 1rem;
     }
   }

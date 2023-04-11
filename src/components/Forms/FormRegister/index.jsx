@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import {  StyledTitleThree } from "../../../styles/typography";
+import { StyledTitleThree } from "../../../styles/typography";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../../services/api";
 import { StyledButton } from "../../../styles/button";
@@ -8,9 +8,11 @@ import { StyleFormContainer } from "../FormLogin/style";
 import { StyleFormRegister } from "./style";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formRegisterSchema } from "../../../services/formSchema";
+
 import { toast } from "react-toastify";
+import { formRegisterSchema } from "./formRegisterSchema";
 export const FormRegister = ({}) => {
+  const [loading, setLoading] = useState(false);
   const [isTypePassword, setIsTypePassword] = useState(true);
   const {
     register,
@@ -22,15 +24,15 @@ export const FormRegister = ({}) => {
   const navigate = useNavigate();
 
   const handleRegister = async (data) => {
-    console.log(data);
     try {
       const userOk = await api.post("/users", data);
       toast.success("conta criada com sucesso");
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
+      setLoading(true);
+      navigate("/login");
     } catch (error) {
       toast.error("Ops! Algo deu errado");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -115,13 +117,13 @@ export const FormRegister = ({}) => {
         <StyledButton
           className="buttonRegister"
           type="submit"
+          disabled={loading}
           buttonSize="mobile"
           buttonStyle="primary-negative"
         >
-          Cadastrar
+          {loading ? "Cadastrando..." : "Cadastrar"}
         </StyledButton>
       </StyleFormRegister>
     </StyleFormContainer>
   );
-
 };

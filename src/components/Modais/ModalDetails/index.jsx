@@ -1,31 +1,53 @@
-import { useForm } from "react-hook-form";
-import { Input } from "../../Input";
-import { StyleModalRegisterTechnologyForm } from "./style";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
-import { StyledButton } from "../../../styles/button";
-import { api } from "../../../services/api";
-import { StyledTitleThree } from "../../../styles/typography";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { formRegisterTechnologySchema } from "./formRegisterTechnologySchema";
+import { StyledTitleThree } from "../../../styles/typography";
+import { Input } from "../../Input";
+import { StyledButton } from "../../../styles/button";
 
-export const ModalRegisterTechnology = ({ isShowModal, setIsShowModal }) => {
+import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { StyleModalRegisterTechnologyForm } from "../ModalRegisterTechnology/style";
+import { formEditTechnologySchema } from "./formEditTechnologySchema";
+
+export const ModalDetails = async ({ isShowModal, setIsShowModal }) => {
+  const { id } = useParams();
+
+  const localStorageIdUserLogado = localStorage.getItem("@USERID");
+  const [techsList, setTechsList] = useState([]);
+
+  const technologyClicked = techsList.find((element) => {
+    return element.id == id;
+  });
+
+  const loadUser = async (userId) => {
+    try {
+      const responseOk = await api.get(`/users/${userId}`);
+      console.log(responseOk);
+      setTechsList(responseOk.data.techs);
+    } catch (error) {
+      toast.error(error);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadUser(localStorageIdUserLogado);
+  }, []);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(formRegisterTechnologySchema),
+    resolver: zodResolver(formEditTechnologySchema),
   });
-  const navigate = useNavigate();
 
-  const handleRegisterTechnology = async (data) => {
-  
+  const handleEditTechnology = async (data, id) => {
     try {
-      const registerTechnologyOk = await api.post("/users/techs", data);
-      console.log(registerTechnologyOk);
-      toast.success("Tecnologia cadastrada com sucesso");
+      const editOk = await api.put(`/users/techs/${id}`, data);
+      console.log(editOk);
+      toast.success("Tecnologia Edita com sucesso");
       setIsShowModal(!isShowModal);
     } catch (error) {
       toast.error(error);
@@ -35,7 +57,7 @@ export const ModalRegisterTechnology = ({ isShowModal, setIsShowModal }) => {
 
   return (
     <StyleModalRegisterTechnologyForm
-      onSubmit={handleSubmit(handleRegisterTechnology)}
+      onSubmit={handleSubmit(handleEditTechnology)}
     >
       <div className={isShowModal ? "formTitle" : "hidden"}>
         <StyledTitleThree fontSize="threeOne">
@@ -48,7 +70,7 @@ export const ModalRegisterTechnology = ({ isShowModal, setIsShowModal }) => {
           type="text"
           id="title"
           label="Nome"
-          placeholder="Digite o nome da technologia"
+          value={"Estamos trabalhando nisso"}
           error={errors.title?.message}
           {...register("title")}
         />
@@ -70,7 +92,7 @@ export const ModalRegisterTechnology = ({ isShowModal, setIsShowModal }) => {
         buttonSize="mobile"
         buttonStyle="primary"
       >
-        Cadastrar Tecnológia
+        Salvar alterações
       </StyledButton>
     </StyleModalRegisterTechnologyForm>
   );

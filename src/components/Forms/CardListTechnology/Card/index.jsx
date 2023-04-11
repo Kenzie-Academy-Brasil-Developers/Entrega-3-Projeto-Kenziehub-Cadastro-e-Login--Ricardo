@@ -3,7 +3,6 @@ import { StyledTitleThree, Styledspan } from "../../../../styles/typography";
 import { StyleCard } from "./style";
 
 export const Card = ({ tech }) => {
-
   return (
     <StyleCard>
       <Link to={`${tech.id}`}>
