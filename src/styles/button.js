@@ -19,6 +19,17 @@ export const StyledButton = styled.button`
           line-height: 2.1rem;
           border-radius: 3.25733px;
         `;
+      case "mobileTechMd":
+        return css`
+          width: 16.309rem;
+          height: 3.837rem;
+          padding: 0rem 1.29865rem;
+          font-weight: 500;
+          font-size: 1.28347rem;
+          line-height: 2.1rem;
+          border-radius: 3.19783px;
+          border: 0.973899px solid var(--color-brown-0);
+        `;
       case "mobileMd":
         return css`
           width: 9.949rem;
@@ -30,6 +41,18 @@ export const StyledButton = styled.button`
           color: var(--color-gray-0);
           border-radius: 4px;
         `;
+      case "mobileSmallTech":
+        return css`
+          width: 7.835rem;
+          height: 3.837rem;
+          padding: 0rem 1.78548rem;
+          font-weight: 500;
+          font-size: 1.27913rem;
+          line-height: 2.1rem;
+          color: var(--color-gray-0);
+          border-radius: 3.19783px;
+          border: 0.973899px solid var(--color-gray-1);
+        `;
       case "sm":
         return css`
           width: 3.249rem;
@@ -38,13 +61,13 @@ export const StyledButton = styled.button`
           font-size: 12px;
           line-height: 28px;
         `;
-        case "mobileSmall":
-          return css`
-            width: 5.549rem;
-            height: 3.2rem;
-            font-size: 1.2rem;
-            line-height: 2.8rem;
-          `;
+      case "mobileSmall":
+        return css`
+          width: 5.549rem;
+          height: 3.2rem;
+          font-size: 1.2rem;
+          line-height: 2.8rem;
+        `;
     }
   }}
 
@@ -104,7 +127,6 @@ export const StyledButton = styled.button`
             font-size: 1.2rem;
             line-height: 2.842rem;
           `;
-          
       }
     }}
   }

@@ -1,19 +1,19 @@
 import { useForm } from "react-hook-form";
 import { StyledParagraph, StyledTitleThree } from "../../../styles/typography";
-import { useNavigate, Link } from "react-router-dom";
-import { api } from "../../../services/api";
+import { Link } from "react-router-dom";
 import { StyleFormContainer, StyleFormLogin } from "./style";
 import { StyledButton } from "../../../styles/button";
 import { Input } from "../../Input";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { useContext, useEffect, useState } from "react";
 import { formLoginSchema } from "./formLoginSchema";
+import { UserContext } from "../../providers/UserContext";
 
-export const FormLogin = ({ setUser }) => {
-  const [loading, setLoading] = useState(false);
-  const [isTypePassword, setIsTypePassword] = useState(true);
+export const FormLogin = ({}) => {
+  const { handleLogin, loading, isTypePassword, setIsTypePassword } =
+    useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -21,23 +21,6 @@ export const FormLogin = ({ setUser }) => {
   } = useForm({
     resolver: zodResolver(formLoginSchema),
   });
-  const navigate = useNavigate();
-
-  const handleLogin = async (data) => {
-    try {
-      setLoading(true);
-      const loginOk = await api.post("/sessions", data);
-      localStorage.setItem("@TOKEN", loginOk.data.token);
-      localStorage.setItem("@USERID", loginOk.data.user.id);
-      setUser(loginOk.data.user);
-
-      navigate("/dashboard");
-    } catch (error) {
-      toast.error("Ops! tem algo errado!");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <StyleFormContainer>

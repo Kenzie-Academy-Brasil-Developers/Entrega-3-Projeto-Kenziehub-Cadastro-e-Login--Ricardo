@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import { StyleInput } from "./style";
 import imgEye from "../../assets/olho.svg";
-import { Link } from "react-router-dom";
 
 export const Input = forwardRef(
   (

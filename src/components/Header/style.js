@@ -37,7 +37,7 @@ justify-content: center;
   }
 }}
   @media (min-width: 768px) {
-    width: 369px;
+    width: 780px;
     .title img{
       width: 144px;
       height: 19.97px;

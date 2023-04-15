@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const StyleModalRegisterTechnologyForm = styled.form`
-display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   z-index: 1;
   margin-top: 7rem;
@@ -27,10 +27,9 @@ display: flex;
   p {
     font-size: 0.9rem;
   }
-  input{
-
+  input {
     border: 0.9772px solid var(--color-white-1);
-border-radius: 3.20867px;
+    border-radius: 3.20867px;
   }
   .fieldsetModal {
     border: none;
@@ -75,14 +74,17 @@ border-radius: 3.20867px;
   .hidden{
     display: none;
   }
-  @media(min-width: 768px) {
-width: 369px;
-.statusFormRegister {
-  width: 32.993rem;
-  height: 4.8rem;
+  .show{
+   display: flex;
 }
-.formTitle {
-  height: 5rem;
-}
-}
+  @media (min-width: 768px) {
+    width: 369px;
+    .statusFormRegister {
+      width: 32.993rem;
+      height: 4.8rem;
+    }
+    .formTitle {
+      height: 5rem;
+    }
+  }
 `;

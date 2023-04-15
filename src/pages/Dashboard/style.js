@@ -12,24 +12,30 @@ export const StyleDashboard = styled.main`
     width: 320px;
     /* max-width: 780px; */
   }
-  .divBord{
+  .divBord {
     position: relative;
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 131px;
-        box-shadow: 0px 1px 0px 0px var(--color-gray-3),
+    box-shadow: 0px 1px 0px 0px var(--color-gray-3),
       0px -1px 0px 0px var(--color-gray-3);
-      align-self: center;
+    align-self: center;
   }
-  .divBordIn{
+  .divBordIn {
     display: flex;
     flex-direction: column;
     height: 131px;
     width: 320px;
     max-width: 780px;
     align-self: center;
+    .show {
+      display: flex;
+    }
+    .hidden {
+      display: none;
+    }
   }
   .containerTitle {
     position: absolute;
@@ -38,30 +44,27 @@ export const StyleDashboard = styled.main`
     justify-content: center;
     width: 100%;
     height: 131px;
-padding: 0 0.3rem;
+    padding: 0 0.3rem;
   }
-  h1, h2 {
+  h1,
+  h2 {
     color: var(--color-gray-0);
     justify-content: flex-start;
     padding: 1rem;
   }
-  
+
   span {
     padding: 1rem;
   }
   header {
     padding: 1rem;
   }
-@media(min-width: 768px){
-  .containerMain {
-    width: 369px;
-    max-width: 780px;
+  @media (min-width: 768px) {
+    .containerMain {
+      width: 780px;
+    }
+    .divBordIn {
+      width: 780px;
+    }
   }
-  .divBordIn{
-    width: 369px;
-    max-width: 780px;
-  }
-}
-`
-
-
+`;

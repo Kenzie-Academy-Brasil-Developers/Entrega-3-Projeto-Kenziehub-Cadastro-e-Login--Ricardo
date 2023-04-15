@@ -9,6 +9,7 @@ export const StyleCard = styled.li`
   padding: 1rem;
   background-color: var(--color-gray-4);
   border-radius: 4.06px;
+
   a {
     width: 100%;
     display: flex;
@@ -17,5 +18,8 @@ export const StyleCard = styled.li`
   }
   :hover {
     background-color: var(--color-gray-2);
+  }
+  @media(min-width: 768px) {
+    width: 732px;
   }
 `;

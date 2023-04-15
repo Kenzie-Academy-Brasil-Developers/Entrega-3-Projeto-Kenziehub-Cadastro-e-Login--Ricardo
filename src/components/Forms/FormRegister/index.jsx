@@ -1,19 +1,18 @@
 import { useForm } from "react-hook-form";
 import { StyledTitleThree } from "../../../styles/typography";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../../services/api";
 import { StyledButton } from "../../../styles/button";
 import { Input } from "../../Input";
 import { StyleFormContainer } from "../FormLogin/style";
 import { StyleFormRegister } from "./style";
-import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { toast } from "react-toastify";
 import { formRegisterSchema } from "./formRegisterSchema";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
+
 export const FormRegister = ({}) => {
-  const [loading, setLoading] = useState(false);
-  const [isTypePassword, setIsTypePassword] = useState(true);
+  const { handleRegister, loading, isTypePassword, setIsTypePassword } =
+    useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -21,20 +20,6 @@ export const FormRegister = ({}) => {
   } = useForm({
     resolver: zodResolver(formRegisterSchema),
   });
-  const navigate = useNavigate();
-
-  const handleRegister = async (data) => {
-    try {
-      const userOk = await api.post("/users", data);
-      toast.success("conta criada com sucesso");
-      setLoading(true);
-      navigate("/login");
-    } catch (error) {
-      toast.error("Ops! Algo deu errado");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <StyleFormContainer>

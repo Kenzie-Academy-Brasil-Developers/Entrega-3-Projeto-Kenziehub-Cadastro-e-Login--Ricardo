@@ -1,43 +1,37 @@
 import { Header } from "../../components/Header";
-import {
-  StyledTitleTwo,
-  Styledspan,
-} from "../../styles/typography";
+import { StyledTitleTwo, Styledspan } from "../../styles/typography";
 import { StyleDashboard } from "./style";
 import { CardListTechnology } from "../../components/Forms/CardListTechnology";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
+import { UserContext } from "../../components/providers/UserContext";
+import { ModalDetails } from "../../components/Modais/ModalDetails";
+import { ModalRegisterTechnology } from "../../components/Modais/ModalRegisterTechnology";
+import {
+  TechContext,
+  TechProvider,
+} from "../../components/providers/TechContext";
 
-export const Dashboard = ({ isShowModal, setIsShowModal, user }) => {
-  const localStorageIdUserLogado = localStorage.getItem("@USERID");
-  const [techsList, setTechsList] = useState([]);
-
-  const loadUser = () => {
-    setTechsList(user.techs);
-  };
-  useEffect(() => {
-    loadUser();
-  }, []);
+export const Dashboard = ({}) => {
+  const { user } = useContext(UserContext);
 
   return (
     <StyleDashboard>
       <div className="containerMain">
         <Header page={"dashboard"} />
+
         <div className="divBord">
           <div className="divBordIn">
             <div className="containerTitle">
               <StyledTitleTwo fontSize="one">Olá, {user.name}</StyledTitleTwo>
               <Styledspan>{user.course_module}</Styledspan>
             </div>
-            <Outlet />
+
+            <ModalRegisterTechnology />
+            <ModalDetails />
           </div>
         </div>
-        <CardListTechnology
-          techsList={techsList}
-          localStorageIdUserLogado={localStorageIdUserLogado}
-          isShowModal={isShowModal}
-          setIsShowModal={setIsShowModal}
-        />
+        <CardListTechnology />
       </div>
     </StyleDashboard>
   );

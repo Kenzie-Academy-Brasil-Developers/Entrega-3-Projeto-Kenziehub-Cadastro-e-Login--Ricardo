@@ -13,10 +13,10 @@ export const StyleCardListTechnology = styled.ul`
   gap: 1rem;
 
   @media (min-width: 768px) {
-    width: 369px;
+    width: 780px;
   }
   .containerListTechnology {
-    width: 369px;
+    width: 780px;
   }
 `;
 
@@ -40,6 +40,6 @@ export const StyleCardListTechnologyContainer = styled.div`
     top: 1rem;
   }
   @media (min-width: 768px) {
-    width: 369px;
+    width: 780px;
   }
 `;
